@@ -167,6 +167,11 @@
                     id result = nil;
                     
                     Class c = [reductionRule representitiveClass];
+					if ([self.grammarClassPrefix length]) {
+						NSString *className = NSStringFromClass(c);
+						NSString *prefixedName = [NSString stringWithFormat:@"%@%@", self.grammarClassPrefix, className];
+						c = NSClassFromString(prefixedName);
+					}
                     if (nil != c)
                     {
                         result = [[(id<CPParseResult>)[c alloc] initWithSyntaxTree:tree] autorelease];

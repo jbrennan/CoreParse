@@ -18,6 +18,7 @@
 
 @synthesize grammar;
 @synthesize delegate;
+@synthesize grammarClassPrefix;
 
 + (id)parserWithGrammar:(CPGrammar *)grammar
 {

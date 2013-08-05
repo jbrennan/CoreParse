@@ -138,6 +138,12 @@ typedef struct
  */
 @property (readonly,retain) CPGrammar *grammar;
 
+
+/**
+ An optional class prefix used when the parser looks for matching class names.
+*/
+@property (readwrite, copy, nonatomic) NSString *grammarClassPrefix;
+
 ///---------------------------------------------------------------------------------------
 /// @name Parsing a Token Stream.
 ///---------------------------------------------------------------------------------------
