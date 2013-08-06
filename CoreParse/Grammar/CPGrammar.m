@@ -75,6 +75,12 @@
             {
                 NSString *name = [(CPIdentifierToken *)[children objectAtIndex:0] identifier];
                 Class c = NSClassFromString(name);
+				// Use the custom class prefix.
+				NSString *grammarClassPrefix = [[NSUserDefaults standardUserDefaults] stringForKey:@"CPGrammarClassPrefixKey"];
+				if (c == nil && ![name hasPrefix:@"CP"] && [grammarClassPrefix length] ) {
+					c = NSClassFromString([NSString stringWithFormat:@"%@%@", grammarClassPrefix, name]);
+				}
+				NSLog(@"REAL CLAZZ %@, NAME: %@", NSStringFromClass(c), name);
                 CPRule *rule = nil == c || ![c conformsToProtocol:@protocol(CPParseResult)] ? [CPRule ruleWithName:name rightHandSideElements:rhs] : [CPRule ruleWithName:name rightHandSideElements:rhs representitiveClass:c];
                 [rules addObject:rule];
             }
